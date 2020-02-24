@@ -8,10 +8,17 @@
     "mongoose": "^5.9.2"
   },
   "devDependencies": {
+    "concurrently": "^5.1.0",
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.2"
   },
   "scripts": {
-    "dev": "nodemon -r dotenv/config server.js"
+    "start": "node server.js",
+    "server": "nodemon -r dotenv/config server.js",
+    "dev": "concurrently \"yarn run server\" \"cd client && yarn run start\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "engines": {
+    "node": "10.15.2"
   }
 }
